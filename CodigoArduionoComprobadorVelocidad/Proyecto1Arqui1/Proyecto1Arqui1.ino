@@ -78,7 +78,7 @@ void loop()
       {
         // Ejecutamos el buzzer
         tone(pinBuzzer, frecuencias[i]);
-        delay(500);
+        delay(750);
       }
       // Limpiamos todos los datos
       noTone(pinBuzzer);
@@ -102,6 +102,10 @@ void loop()
       flag2 = 0;
       digitalWrite(led1, LOW);
     }
+    lcd.print("Proyecto");
+    lcd.setCursor(0,1);
+    lcd.print("Arqui1");
+    lcd.setCursor(0,0);
   }
 }
 	
