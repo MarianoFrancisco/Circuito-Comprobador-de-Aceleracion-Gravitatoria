@@ -14,28 +14,52 @@ st.markdown("### Mariano Francisco Camposeco Camposeco - 202030987")
 st.markdown("### Manuel Antonio Rojas Paxtor - 202030799")
 
 # Se obtienen los datos del csv
-datos = pd.read_csv('Files/Data45.csv', header=0);
+datos = pd.read_csv('Files/Data45.csv', header=0)
 
-st.markdown("## Datos Recopilados: ");
-st.markdown("##### Tiempo - Velocidad: ");
+st.markdown("## Datos Recopilados: ")
+
+tiro = []
+dis = []
+time = []
+vel = []
+ac = []
 
 # Imprimimos los datos recopilados del archivo csv
 for i in range(0,datos['Tiempo'].size):
-     linea = "##### " + str(datos.values[i,0])+" - "  + str(datos.values[i,1])
-     st.markdown(linea)
+     t = datos.values[i,0]
+     v = datos.values[i,1]
+     ace = round(((2*50)/(t*t))/100,2)
+     tiro.append(i+1)
+     dis.append(50)
+     time.append(t)
+     vel.append( round(v,2))
+     ac.append(ace)
+
+tabla = {
+     "Lanzamiento" : tiro,
+     "Distancia" : dis,
+     "Tiempo": time,
+     "Velocidad" : vel,
+     "Aceleracion": ac
+}
+
+st.table(tabla)
+
 
 # Se calculan los datos de velocidad, tiempo y aceleracion
-velocidad = round(((datos['Velocidad'].sum()/datos['Velocidad'].size))/100,2);
+velocidad = round(((datos['Velocidad'].sum()/datos['Velocidad'].size))/100,2)
 
-tiempo = round((datos['Tiempo'].sum()/datos['Tiempo'].size),2);
+tiempo = round((datos['Tiempo'].sum()/datos['Tiempo'].size),2)
 
-aceleracion = round(((2*50)/(tiempo*tiempo))/100,2);
+aceleracion = round(((2*50)/(tiempo*tiempo))/100,2)
 
-st.markdown("## Datos promedio: ");
-st.markdown("##### Distancia: " + str(0.50) + " m");
-st.markdown("##### Tiempo: " + str(tiempo) + " s");
-st.markdown("##### Velocidad: " + str(velocidad) + " m/s");
-st.markdown("##### Aceleracion: " + str(aceleracion) + " m/s^2");
+st.markdown("## Datos promedio: ")
+st.markdown("##### Distancia: " + str(0.50) + " m")
+st.markdown("##### Tiempo: " + str(tiempo) + " s")
+st.markdown("##### Velocidad: " + str(velocidad) + " m/s")
+st.markdown("##### Aceleracion: " + str(aceleracion) + " m/s^2")
+
+st.markdown("## Graficas")
 
 # Se crea los datos de la primera grafica
 xVel = [0,tiempo]
